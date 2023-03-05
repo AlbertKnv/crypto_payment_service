@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:14
+    volumes:
+      - cps_postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=postgres
+
+  redis:
+    image: redis:7.0.4
+    command: ["redis-server", "--save", '""', "--appendonly", "no", "--timeout",  "0", "--tcp-keepalive", "300"]
+
+  bitcoin:
+    image: bitcoin:23.0
+    volumes:
+      - cps_bitcoin:/bitcoin
+
+  api:
+    image: cps:1.0.0
+    command: ["uvicorn", "--host", "0.0.0.0", "--port", "80", "api_server.main:app"]
+    ports:
+      - "80:80"
+    env_file:
+      - ./.env
+
+  network:
+    image: cps:1.0.0
+    command: ["python", "-m", "daemons.network"]
+    env_file:
+      - ./.env
+
+  redis_init:
+    image: cps:1.0.0
+    command: ["python", "-m", "daemons.redis_init"]
+    env_file:
+      - ./.env
+
+  exchange:
+    image: cps:1.0.0
+    command: ["python", "-m", "daemons.exchange"]
+    env_file:
+      - ./.env
+
+volumes:
+  cps_postgres:
+    external: true
+  cps_bitcoin:
+    external: true

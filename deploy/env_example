@@ -1,0 +1,15 @@
+# service secret key (>= 16 ascii symbols)
+SECRET_KEY=4cf2e7c62ba0a412
+# bitcoin test network(true or false)
+TESTNET=false
+# url to recieve payment notifications
+CALLBACK_URL=https://your_callback_server
+# your wallet bitcoin address
+ADDRESS=bc1qnlq4krmd2qe57fg3mvf2kturjfj27w58w73xpc
+DATABASE_URI=postgresql://postgres:postgres@postgres/postgres
+REDIS_HOST=redis
+RPC_PROVIDER=http://bitcoin:20001
+RPC_USER=5PbkTjRB
+RPC_PASSWORD=mYSR8bC6
+ZMQ_SOCKET=tcp://bitcoin:20002
+PYTHONUNBUFFERED=TRUE
