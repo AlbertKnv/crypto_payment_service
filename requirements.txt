@@ -1,0 +1,13 @@
+fastapi==0.88.0
+pydantic==1.10.5
+uvicorn==0.20.0
+psycopg2==2.9.5
+SQLAlchemy==2.0.2
+alembic==1.9.1
+asyncpg==0.27.0
+tenacity==8.2.2x
+cryptography==39.0.0
+bitcoinaddress==0.1.5
+redis==4.4.1
+pyzmq==24.0.1
+aiohttp==3.8.3
